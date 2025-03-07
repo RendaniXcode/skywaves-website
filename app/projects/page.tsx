@@ -78,12 +78,12 @@ const projects = [
   },
 ]
 
-// Group projects by category
+// Group projects by category with proper TypeScript typing
 const categories = [...new Set(projects.map(project => project.category))];
-const projectsByCategory = categories.reduce((acc, category) => {
+const projectsByCategory = categories.reduce((acc: Record<string, typeof projects>, category) => {
   acc[category] = projects.filter(project => project.category === category);
   return acc;
-}, {});
+}, {} as Record<string, typeof projects>);
 
 export default function ProjectsPage() {
   return (
